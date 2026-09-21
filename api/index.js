@@ -7,5 +7,11 @@ const app=express();
 const PORT= process.env?.PORT || 9000;
 app.use(cors( {origin: process.env.CLIENT_URL}))
 app.use(express.json());
+app.get('/', (req, res) => {
+    res.json({
+        success: true,
+        message: 'Zentora API is running'
+    });
+});
 dbconnect();
 app.use(router);
