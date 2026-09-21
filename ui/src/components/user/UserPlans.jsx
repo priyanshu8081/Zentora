@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { FaCheck, FaTimes } from 'react-icons/fa'
+import { FaCheck, FaTimes } from 'react-icons/fa';
+const API_URL=import.meta.env.VITE_API_URL;
 import Swal from 'sweetalert2'
 const UserPlans = () => {
   const [data, setData] = useState([])
@@ -8,7 +9,7 @@ const UserPlans = () => {
     fetchData()
   }, [])
   const fetchData = async () => {
-    const res = await axios.get('http://localhost:9000/admin-get-plans')
+    const res = await axios.get(`${API_URL}/admin-get-plans`)
     setData(res?.data?.result)
   }
   const handlePurchasePlan = (item) => {
@@ -26,7 +27,7 @@ const UserPlans = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const data = { planId, userId };
-        const res = await axios.post('http://localhost:9000/user-purchase-plan', data)
+        const res = await axios.post(`${API_URL}/user-purchase-plan`, data)
         if (res?.data?.success == true) {
           Swal.fire({
             title: "PurchasePlan",

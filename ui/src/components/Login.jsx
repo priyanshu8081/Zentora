@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import Swal from "sweetalert2";
+const API_URL=import.meta.env.VITE_API_URL;
 import { Link, useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
@@ -23,7 +24,7 @@ const Login = () => {
   });
 
   const handleLogin = async (data) => {
-    const res = await axios.post('http://localhost:9000/login', data);
+    const res = await axios.post(`${API_URL}`, data);
     if (res?.data?.success == true) {
       localStorage.setItem("info", JSON.stringify(res?.data?.result))
       if (res?.data?.result?.type == 'admin') {

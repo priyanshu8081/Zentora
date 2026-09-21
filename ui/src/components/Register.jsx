@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import axios from "axios";
 import Swal from "sweetalert2";
+const API_URL=import.meta.env.VITE_API_URL;
 const schema = yup
   .object()
   .shape({
@@ -18,7 +19,7 @@ const Register = () => {
     resolver: yupResolver(schema),
   });
   const handleRegister = async (data) => {
-    const res = await axios.post('http://localhost:9000/register', data)
+    const res = await axios.post(`${API_URL}`, data)
     if (res?.data?.success == true) {
       Swal.fire({
         title: "Register",

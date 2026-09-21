@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+const API_URL=import.meta.env.VITE_API_URL;
 import { Link } from 'react-router-dom'
 import { FaWallet, FaGavel, FaCoins } from 'react-icons/fa'
 
@@ -13,7 +14,7 @@ const UserDashboard = () => {
 
   const fetchData = async () => {
     const userId = info?._id
-    const res = await axios.get(`http://localhost:9000/user-stats?userId=${userId}`)
+    const res = await axios.get(`${API_URL}/user-stats?userId=${userId}`)
     setStats(res?.data?.result)
   }
 

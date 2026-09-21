@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaClock } from "react-icons/fa";
+const API_URL=import.meta.env.VITE_API_URL;
 import Swal from "sweetalert2";
 
 const UserProjects = () => {
@@ -12,7 +13,7 @@ const UserProjects = () => {
   }, []);
 
   const fetchData = async () => {
-    const res = await axios.get("http://localhost:9000/user-project-list");
+    const res = await axios.get(`${API_URL}/user-project-list`);
     setData(res?.data?.result);
   };
   const handlePostBid = async () => {

@@ -4,7 +4,8 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import axios from 'axios'
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+const API_URL=import.meta.env.VITE_API_URL;
 
 const schema = yup.object({
   name: yup.string().required('Name is required'),
@@ -63,7 +64,7 @@ const UserProfile = () => {
       npassword: data.npassword || '',
     }
 
-    const res = await axios.put('http://localhost:9000/user-profile-update', finalData)
+    const res = await axios.put(`${API_URL}/user-profile-update`, finalData)
 
     if (res?.data?.success === true) {
       localStorage.setItem(
