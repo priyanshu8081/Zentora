@@ -9,6 +9,3 @@ app.use(cors( {origin: process.env.CLIENT_URL}))
 app.use(express.json());
 dbconnect();
 app.use(router);
-app.listen(PORT,()=>{
-    console.log(`Server is running on ${PORT}`); 
-})
